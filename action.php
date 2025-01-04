@@ -1,3 +1,9 @@
+<!DOCTYPE html>
+    <html>
+        <head>
+            <link rel="stylesheet" href="style.css">
+        </head>
+    </html>
 <?php
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $latestFile = $_POST['file'] ?? null;

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="style.css">    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CSV Upload</title>
@@ -37,7 +38,7 @@
     ?>
 
     <form action="" method="post" enctype="multipart/form-data">
-        <label for="csv_file">Wählen Sie eine CSV-Datei aus:</label>
+        <label for="csv_file">Wähle eine CSV-Datei aus:</label>
         <input type="file" name="csv_file" id="csv_file" accept=".csv" required>
         <br><br>
         <button type="submit">Hochladen</button>

@@ -1,0 +1,20 @@
+*{
+    font-family: Arial, Helvetica, sans-serif;
+    border: none;
+}
+
+td, th{
+    border: solid;
+    border-width: 2px;
+}
+
+button{
+    background-color: #12c2e6;
+    border-radius: 10px;
+    border: none;
+}
+
+button:hover{
+    cursor: pointer;
+    background-color: #0c8199;
+}
