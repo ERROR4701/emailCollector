@@ -1,0 +1,6 @@
+<Files "download.php">
+  AuthType Basic
+  AuthName "Restricted Access"
+  AuthUserFile E:/xampp/htdocs/.htpasswd
+  Require valid-user
+</Files>
