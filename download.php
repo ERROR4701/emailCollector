@@ -18,7 +18,7 @@
 
         if (!empty($files)) {
             echo '<form method="post" action="">';
-            echo '<label for="file">Wählen Sie eine Datei aus:</label>'; 
+            echo '<label for="file">Wähle eine Datei aus:</label>'; 
             echo '<select name="file" id="file">';
 
             foreach ($files as $file) {

@@ -1,12 +1,12 @@
 <Files "download.php">
   AuthType Basic
   AuthName "Restricted Access"
-  AuthUserFile E:/xampp/htdocs/emailCollector/.htpasswd
+  AuthUserFile /var/www/html/.htpasswd
   Require valid-user
 </Files>
 <Files "upload.php">
   AuthType Basic
   AuthName "Restricted Access"
-  AuthUserFile E:/xampp/htdocs/emailCollector/.htpasswd
+  AuthUserFile var/www/html/.htpasswd
   Require valid-user
 </Files>
