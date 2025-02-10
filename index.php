@@ -10,7 +10,7 @@
     <h1>Klassenliste</h1>
 
     <?php
-    $uploadDir = 'uploads/';
+    $uploadDir = 'secure/uploads/';
 
     // Prüfen, ob der Ordner existiert
     if (is_dir($uploadDir)) {
@@ -39,6 +39,10 @@
                     $vorname = htmlspecialchars($data[0]);
                     $nachname = htmlspecialchars($data[1]);
                     $email = htmlspecialchars($data[2]);
+                    
+                    if($email != NULL){
+                        $email = "E-Mail bereits eingetragen!";
+                    }
 
                     echo '<tr>';
                     echo '<form method="post" action="action.php">';
