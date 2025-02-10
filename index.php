@@ -69,5 +69,6 @@
         echo '<p>Upload-Ordner existiert nicht.</p>';
     }
     ?>
+    <a href="secure/upload.php">Upload</a> <a href="secure/download.php">Download</a>
 </body>
 </html>
