@@ -3,7 +3,18 @@
     border: none;
 }
 
-td, th{
+table{
+    border: solid;
+    border-width: 2px;
+    border-radius: 10px;
+    padding: 3px;
+}
+
+th{
+    border: none;
+}
+
+td{
     border: solid;
     border-width: 2px;
 }

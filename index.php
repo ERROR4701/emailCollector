@@ -40,6 +40,7 @@
                     $nachname = htmlspecialchars($data[1]);
                     $email = htmlspecialchars($data[2]);
                     
+                    // Überprüfen ob E-Mail bereits eingetragen ist
                     if($email != NULL){
                         $email = "E-Mail bereits eingetragen!";
                     }
