@@ -4,10 +4,10 @@
     <link rel="stylesheet" href="style.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Klassenliste</title>
+    <title>Student List</title>
 </head>
 <body>
-    <h1>Klassenliste</h1>
+    <h1>Student List</h1>
 
     <?php
     $uploadDir = 'secure/uploads/';
@@ -27,53 +27,53 @@
         }
 
         if ($latestFile && file_exists($latestFile)) {
-            echo "<p>Angezeigte Datei: <strong>" . basename($latestFile) . "</strong></p>";
+            echo "<p>Displaying File: <strong>" . basename($latestFile) . "</strong></p>";
 
             // Datei öffnen und Inhalte lesen
             if (($handle = fopen($latestFile, 'r')) !== false) {
                 echo '<table border="1">';
-                echo '<tr><th>Lfd.</br>Nr.</th><th>Schüler</br>Vorname</th><th>Schüler</br>Nachname</th><th>Eltern</br>Nachname</th><th>Eltern</br>E-Mail</th><th>Aktion</th></tr>';
+                echo '<tr><th>ID</th><th>Student</br>First Name</th><th>Student</br>Last Name</th><th>Parents</br>Last Name</th><th>Parents</br>E-Mail</th><th>Action</th></tr>';
 
                 $header = fgetcsv($handle); // Überspringen der Kopfzeile
                 while (($data = fgetcsv($handle)) !== false) {
                     $id = htmlspecialchars($data[0]);
-                    $svorname = htmlspecialchars($data[1]);
-                    $snachname = htmlspecialchars($data[2]);
-                    $enachname = htmlspecialchars($data[3]);
+                    $sfname = htmlspecialchars($data[1]);
+                    $slname = htmlspecialchars($data[2]);
+                    $plname = htmlspecialchars($data[3]);
                     $email = htmlspecialchars($data[4]);
                     $dob = htmlspecialchars($data[5]);
                     
                     // Überprüfen ob E-Mail bereits eingetragen ist
                     if($email != NULL){
-                        $emailText = "E-Mail bereits eingetragen!";
+                        $emailText = "E-Mail already submitted!";
                         $emailSubmitted = true;
                     }else{
                         $emailText = $email;
                         $emailSubmitted = false;
                     }
-                    if (isset($_POST['ueberpruefen' . $id])) {
+                    if (isset($_POST['check' . $id])) {
                         echo '<script>
-                                var eingabe = prompt("Bitte geben Sie das Geburtsdatum Ihres Kindes im Format TT.MM.JJJJ ein.");
+                                var input = prompt("Please enter your childs date of birth using the DD.MM.YYYY format.");
                                 if (eingabe == "' . $dob . '") {
                                     alert("' . $email . '");
-                                }else{alert("Geburtsdatum stimmt nicht überein. Zugang verweigert.")}
+                                }else{alert("Incorrect date of birth. Access denied.")}
                               </script>';
                     }
                     echo '<tr>';
                     echo '<form method="post" action="action.php">';
                     echo '<td>' . $id . '</td>';
-                    echo '<td>' . $svorname . '</td>';
-                    echo '<td>' . $snachname . '</td>';
-                    echo '<td><input type="name" name="enachname" value="' . $enachname . '"</td>';
+                    echo '<td>' . $sfname . '</td>';
+                    echo '<td>' . $slname . '</td>';
+                    echo '<td><input type="name" name="enachname" value="' . $plname . '"</td>';
                     echo '<td><input type="email" name="email" value="' . $emailText . '" required></td>';
-                    echo '<input type="hidden" name="svorname" value="' . $svorname . '">';
-                    echo '<input type="hidden" name="snachname" value="' . $snachname . '">';
+                    echo '<input type="hidden" name="svorname" value="' . $sfname . '">';
+                    echo '<input type="hidden" name="snachname" value="' . $slname . '">';
                     echo '<input type="hidden" name="file" value="' . $latestFile . '">';
-                    echo '<td><button class="save" type="submit">Speichern</button></td>';
+                    echo '<td><button class="save" type="submit">Save</button></td>';
                     echo '</form>';
                     if($emailSubmitted){
                     echo '<form method="post">';
-                    echo '<td><input class="save" type="submit" name="ueberpruefen'.$id.'" value="Überprüfen"/></td>';
+                    echo '<td><input class="save" type="submit" name="check'.$id.'" value="View E-Mail"/></td>';
                     echo '</form>';
                     }
                     echo '</tr>';
@@ -82,15 +82,15 @@
                 echo '</table>';
                 fclose($handle);
             } else {
-                echo '<p>Fehler: Datei konnte nicht geöffnet werden.</p>';
+                echo "<p>Error: File couldn't be opened.</p>";
             }
         } else {
-            echo '<p>Keine CSV-Dateien im Upload-Ordner gefunden.</p>';
+            echo '<p>No CSV-File in upload directory.</p>';
         }
     } else {
-        echo '<p>Upload-Ordner existiert nicht.</p>';
+        echo "<p>Upload directory doesn't exist.</p>";
     }
     ?>
-    <a href="secure/upload.php">Upload</a> <a href="secure/download.php">Download</a>
+    <a href="secure/dashboard.php">Dashboard</a>
 </body>
 </html>

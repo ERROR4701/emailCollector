@@ -1,31 +1,37 @@
 *{
-    font-family: Arial, Helvetica, sans-serif;
-    border: none;
+	font-family: arial;
+}
+
+.save{
+	width: 100%;
+	cursor: pointer;
+	background-color: #09d1f4;
+	border-radius: 5px;
+	border: solid;
+	border-width: 1px;
+}
+
+.sbutton{
+	cursor: pointer;
+	background-color: #09d1f4;
+	border-radius: 5px;
+	border: solid;
+	border-width: 1px;
+}
+
+.link{
+	text-decoration: none;
+	color: black;
 }
 
 table{
-    border: solid;
-    border-width: 2px;
-    border-radius: 10px;
-    padding: 3px;
+	border-radius: 10px;
 }
 
 th{
-    border: none;
+	border: none;
 }
 
-td{
-    border: solid;
-    border-width: 2px;
-}
-
-.save {
-    background-color: #12c2e6;
-    border-radius: 10px;
-    border: none;
-}
-
-.save:hover{
-    cursor: pointer;
-    background-color: #0c8199;
+input{
+	border-radius: 5px;
 }
