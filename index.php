@@ -32,29 +32,50 @@
             // Datei öffnen und Inhalte lesen
             if (($handle = fopen($latestFile, 'r')) !== false) {
                 echo '<table border="1">';
-                echo '<tr><th>Vorname</th><th>Nachname</th><th>E-Mail</th><th>Aktion</th></tr>';
+                echo '<tr><th>Lfd.</br>Nr.</th><th>Schüler</br>Vorname</th><th>Schüler</br>Nachname</th><th>Eltern</br>Nachname</th><th>Eltern</br>E-Mail</th><th>Aktion</th></tr>';
 
                 $header = fgetcsv($handle); // Überspringen der Kopfzeile
                 while (($data = fgetcsv($handle)) !== false) {
-                    $vorname = htmlspecialchars($data[0]);
-                    $nachname = htmlspecialchars($data[1]);
-                    $email = htmlspecialchars($data[2]);
+                    $id = htmlspecialchars($data[0]);
+                    $svorname = htmlspecialchars($data[1]);
+                    $snachname = htmlspecialchars($data[2]);
+                    $enachname = htmlspecialchars($data[3]);
+                    $email = htmlspecialchars($data[4]);
+                    $dob = htmlspecialchars($data[5]);
                     
                     // Überprüfen ob E-Mail bereits eingetragen ist
                     if($email != NULL){
-                        $email = "E-Mail bereits eingetragen!";
+                        $emailText = "E-Mail bereits eingetragen!";
+                        $emailSubmitted = true;
+                    }else{
+                        $emailText = $email;
+                        $emailSubmitted = false;
                     }
-
+                    if (isset($_POST['ueberpruefen' . $id])) {
+                        echo '<script>
+                                var eingabe = prompt("Bitte geben Sie das Geburtsdatum Ihres Kindes im Format TT.MM.JJJJ ein.");
+                                if (eingabe == "' . $dob . '") {
+                                    alert("' . $email . '");
+                                }else{alert("Geburtsdatum stimmt nicht überein. Zugang verweigert.")}
+                              </script>';
+                    }
                     echo '<tr>';
                     echo '<form method="post" action="action.php">';
-                    echo '<td>' . $vorname . '</td>';
-                    echo '<td>' . $nachname . '</td>';
-                    echo '<td><input type="email" name="email" value="' . $email . '" required></td>';
-                    echo '<input type="hidden" name="vorname" value="' . $vorname . '">';
-                    echo '<input type="hidden" name="nachname" value="' . $nachname . '">';
+                    echo '<td>' . $id . '</td>';
+                    echo '<td>' . $svorname . '</td>';
+                    echo '<td>' . $snachname . '</td>';
+                    echo '<td><input type="name" name="enachname" value="' . $enachname . '"</td>';
+                    echo '<td><input type="email" name="email" value="' . $emailText . '" required></td>';
+                    echo '<input type="hidden" name="svorname" value="' . $svorname . '">';
+                    echo '<input type="hidden" name="snachname" value="' . $snachname . '">';
                     echo '<input type="hidden" name="file" value="' . $latestFile . '">';
-                    echo '<td><button type="submit">Speichern</button></td>';
+                    echo '<td><button class="save" type="submit">Speichern</button></td>';
                     echo '</form>';
+                    if($emailSubmitted){
+                    echo '<form method="post">';
+                    echo '<td><input class="save" type="submit" name="ueberpruefen'.$id.'" value="Überprüfen"/></td>';
+                    echo '</form>';
+                    }
                     echo '</tr>';
                 }
 

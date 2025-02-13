@@ -19,13 +19,13 @@ td{
     border-width: 2px;
 }
 
-button{
+.save {
     background-color: #12c2e6;
     border-radius: 10px;
     border: none;
 }
 
-button:hover{
+.save:hover{
     cursor: pointer;
     background-color: #0c8199;
 }

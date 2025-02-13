@@ -8,10 +8,10 @@
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $latestFile = $_POST['file'] ?? null;
     $email = $_POST['email'] ?? null;
-    $vorname = $_POST['vorname'] ?? null;
-    $nachname = $_POST['nachname'] ?? null;
+    $svorname = $_POST['svorname'] ?? null;
+    $snachname = $_POST['snachname'] ?? null;
 
-    if ($latestFile && $email && $vorname && $nachname) {
+    if ($latestFile && $email && $svorname && $snachname) {
         if (file_exists($latestFile)) {
             $tempFile = $latestFile . '.tmp';
 
@@ -24,8 +24,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $updated = false;
 
                 while (($row = fgetcsv($inputHandle)) !== false) {
-                    if (isset($row[0], $row[1]) && $row[0] === $vorname && $row[1] === $nachname) {
-                        $row[2] = $email; // Aktualisiere die E-Mail-Adresse
+                    if (isset($row[1], $row[2]) && $row[1] === $svorname && $row[2] === $snachname) {
+                        $row[3] = $email; // Aktualisiere die E-Mail-Adresse
                         $updated = true;
                     }
                     fputcsv($outputHandle, $row);
