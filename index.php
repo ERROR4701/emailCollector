@@ -52,12 +52,17 @@
                         $emailSubmitted = false;
                     }
                     if (isset($_POST['check' . $id])) {
+                        include 'secure/config.php';
+                        if($usedob == 'Yes'){
                         echo '<script>
                                 var input = prompt("Please enter your childs date of birth using the DD.MM.YYYY format.");
-                                if (eingabe == "' . $dob . '") {
+                                if (input == "' . $dob . '") {
                                     alert("' . $email . '");
                                 }else{alert("Incorrect date of birth. Access denied.")}
                               </script>';
+                        }else{
+                            echo '<script>alert("'.$email.'");</script>';
+                        }
                     }
                     echo '<tr>';
                     echo '<form method="post" action="action.php">';

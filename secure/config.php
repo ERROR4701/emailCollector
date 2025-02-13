@@ -1,5 +1,5 @@
 <?php
 
-$usedob = 'Ja';
+$usedob = 'Yes';
 
 ?>
