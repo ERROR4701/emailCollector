@@ -69,11 +69,12 @@
                     echo '<td>' . $id . '</td>';
                     echo '<td>' . $sfname . '</td>';
                     echo '<td>' . $slname . '</td>';
-                    echo '<td><input type="name" name="enachname" value="' . $plname . '"</td>';
+                    echo '<td><input type="name" name="plname" value="' . $plname . '"</td>';
                     echo '<td><input type="email" name="email" value="' . $emailText . '" required></td>';
-                    echo '<input type="hidden" name="svorname" value="' . $sfname . '">';
-                    echo '<input type="hidden" name="snachname" value="' . $slname . '">';
+                    echo '<input type="hidden" name="sfname" value="' . $sfname . '">';
+                    echo '<input type="hidden" name="slname" value="' . $slname . '">';
                     echo '<input type="hidden" name="file" value="' . $latestFile . '">';
+                    echo '<input type="hidden" name="id" value="' . $id . '">';
                     echo '<td><button class="save" type="submit">Save</button></td>';
                     echo '</form>';
                     if($emailSubmitted){
