@@ -19,6 +19,15 @@
 	border-width: 1px;
 }
 
+.delete{
+	cursor: pointer;
+	background-color: #D2042D;
+	border-radius: 5px;
+	border: solid;
+	border-width: 1px;
+	font-weight: bolder;
+}
+
 .link{
 	text-decoration: none;
 	color: black;

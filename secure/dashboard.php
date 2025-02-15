@@ -42,6 +42,24 @@
         <button class="sbutton" type="submit">Upload</button>
     </form>
 
+    <h1>Clear Upload Directory</h1>
+
+    <form method="post">
+        <input class="delete" type="submit" name="delete" value="DELETE ALL UPLOADED FILES">
+        <?php
+            if (isset($_POST['delete'])) {
+                $uploadDir = 'uploads/';
+                $files = glob($uploadDir.'*');
+                foreach($files as $file){
+                    if(is_file($file)){
+                        unlink($file);
+                    }
+                }
+            }
+        ?>
+    
+    </form>
+    
     <h1>Download CSV-File</h1>
 
     <?php
