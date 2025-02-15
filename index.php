@@ -36,13 +36,32 @@
 
                 $header = fgetcsv($handle); // Überspringen der Kopfzeile
                 while (($data = fgetcsv($handle)) !== false) {
-                    $id = htmlspecialchars($data[0]);
-                    $sfname = htmlspecialchars($data[1]);
-                    $slname = htmlspecialchars($data[2]);
-                    $plname = htmlspecialchars($data[3]);
-                    $email = htmlspecialchars($data[4]);
-                    $dob = htmlspecialchars($data[5]);
+                    $id = isset($data[0]) ? htmlspecialchars($data[0]) : null;
+                    $sfname = isset($data[1]) ? htmlspecialchars($data[1]) : null;
+                    $slname = isset($data[2]) ? htmlspecialchars($data[2]) : null;
+                    $plname = isset($data[3]) ? htmlspecialchars($data[3]) : null;
+                    $email = isset($data[4]) ? htmlspecialchars($data[4]) : null;
+                    include 'secure/config.php';
+                    if($usedob == "Yes"){
+                        $dob = isset($data[5]) ? htmlspecialchars($data[5]) : null;
+                    }
                     
+                    $missing_vars = [];
+                    if (empty($id)) $missing_vars[] = "id";
+                    if (empty($sfname)) $missing_vars[] = "student's first name";
+                    if (empty($slname)) $missing_vars[] = "student's last name";
+                    if (empty($plname)) $missing_vars[] = "parent's last name";
+                    if (empty($email)) $missing_vars[] = "email";
+                    if ($usedob == "Yes"){
+                        if(empty($dob)) $missing_vars[] = "date of birth";
+                    }
+
+                    if (!empty($missing_vars)) {
+                        die("<strong>Error: Data couldn't be retrieved from CSV-File, it is likely missing from the file: " . implode(", ", $missing_vars)."</strong>
+                        </br>
+                        <button class='sbutton'><a class='link' href='secure/dashboard.php'>Go to the Dashboard</a></button>");
+                    }
+
                     // Überprüfen ob E-Mail bereits eingetragen ist
                     if($email != NULL){
                         $emailText = "E-Mail already submitted!";
